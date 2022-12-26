@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		overflow-x: hidden;
+	}
+}
+
+.tippy-popper .tippy-tooltip {
+	background-color: #23272a;
+}
+
+#tippy-tooltip-1.tippy-popper .tippy-tooltip .arrow-regular,
+#tippy-tooltip-2.tippy-popper .tippy-tooltip .arrow-regular,
+#tippy-tooltip-3.tippy-popper .tippy-tooltip .arrow-regular,
+#tippy-tooltip-4.tippy-popper .tippy-tooltip .arrow-regular,
+#tippy-tooltip-5.tippy-popper
+	.tippy-tooltip
+	.arrow-regular {
+	border-right-color: #23272a;
+}
+
+#tippy-tooltip-6.tippy-popper
+	.tippy-tooltip
+	.arrow-regular {
+	border-top-color: #23272a;
+}
+
+#tippy-tooltip-7.tippy-popper .tippy-tooltip .arrow-regular,
+#tippy-tooltip-8.tippy-popper .tippy-tooltip .arrow-regular,
+#tippy-tooltip-9.tippy-popper
+	.tippy-tooltip
+	.arrow-regular {
+	border-bottom-color: #23272a;
+}
+
+.scrollbar::-webkit-scrollbar {
+	width: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+	background: #2f3136;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+	background: #202225;
+}
+
+.active {
+	color: #000;
+}

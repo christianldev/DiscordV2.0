@@ -53,7 +53,7 @@ const logged = (response, navigate) => {
 	if (redirect) {
 		navigate(redirect);
 	} else {
-		navigate('/home');
+		navigate('/');
 	}
 };
 

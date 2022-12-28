@@ -15,7 +15,6 @@ export class FriendService extends ApiService {
 					payload
 				)
 				.then((response) => {
-					console.log(response);
 					store.dispatch(
 						setPendingFriendsInvitations(response.data)
 					);

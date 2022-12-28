@@ -4,10 +4,17 @@ import {
 	RiLogoutBoxRLine,
 } from 'react-icons/ri';
 import FriendNotification from '../FriendNotification/FriendNotification';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const Tabs = () => {
 	const [dropdown, setDropdown] = useState(false);
+
+	const navigate = useNavigate();
+
+	const signOut = () => {
+		store.dispatch(logout());
+		UserUtils.loggedOut(navigate);
+	};
 
 	return (
 		<div className="w-full h-20 md:h-16 px-6 shadow-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-between">
@@ -73,7 +80,10 @@ const Tabs = () => {
 								<RiNotification3Fill className="h-5 w-5 text-white" />
 							</button>
 							<button className="p-2 text-xs rounded bg-[#393943] hover:bg-firstColor text-white shadow-md flex items-center justify-center">
-								<RiLogoutBoxRLine className="h-5 w-5 text-white" />
+								<RiLogoutBoxRLine
+									onClick={signOut}
+									className="h-5 w-5 text-white"
+								/>
 							</button>
 						</div>
 					</div>

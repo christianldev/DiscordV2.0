@@ -25,7 +25,10 @@ export const AppLayout = () => {
 					titleModal={titleModal}
 					childrenModal={childrenModal}
 				/>
-				<div className="bg-[#393943] w-full px-5">
+				<div
+					className={`bg-[#393943] w-full px-5 ${
+						showModal && '-z-10'
+					}`}>
 					<Tabs />
 
 					<Outlet />

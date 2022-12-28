@@ -36,11 +36,11 @@ const servers = [
 
 const InitialDashboard = () => {
 	const {showModal} = useModalForm();
+
 	return (
 		<>
 			<div
-				className={`relative h-[13rem] sm:h-[16rem] md:h-[19rem] rounded-[0.3rem]
-				 ${showModal ? ' -z-10' : 'z-0'}`}>
+				className={`relative h-[13rem] sm:h-[16rem] md:h-[19rem] rounded-[0.3rem] z-0'}`}>
 				<div className="absolute flex w-full">
 					<img
 						src="https://i.postimg.cc/sg5dkv6h/hero.jpg"
@@ -118,10 +118,8 @@ const InitialDashboard = () => {
 								/>
 							</div>
 							<div
-								className={`bg-[#292b2f] relative h-[11.5rem] 
-                      px-[1rem] rounded-b-[0.8rem] ${
-												showModal && '-z-10'
-											}`}>
+								className="bg-[#292b2f] relative h-[11.5rem] 
+                      px-[1rem] rounded-b-[0.8rem]">
 								<div
 									className="absolute -top-8 left-4 w-16 h-16 flex rounded-[1rem] p-1
                        bg-[#292b2f]">

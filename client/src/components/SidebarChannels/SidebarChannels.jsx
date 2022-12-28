@@ -13,7 +13,7 @@ const SidebarChannels = ({
 }) => {
 	return (
 		<div
-			className="hidden xl:flex lg:flex flex-col justify-between bg-[#303136] w-[14rem] shrink-0 h-screen sticky 
+			className="hidden xl:flex lg:flex flex-col justify-between bg-[#303136] w-[16rem] shrink-0 h-screen sticky 
         top-0 overflow-y-auto">
 			<div className="p-4">
 				<ChannelsOption />

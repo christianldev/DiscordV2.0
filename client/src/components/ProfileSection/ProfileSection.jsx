@@ -12,10 +12,10 @@ const ProfileSection = ({
 	return (
 		<div
 			className="bg-[#292b2f] h-[5rem] flex text-white/80 items-center 
-                            px-1 justify-between rounded-2xl m-2">
+                            px-1 justify-evenly rounded-2xl m-2">
 			<div
 				onClick={() => handlerModal('profileCard')}
-				className="flex items-center cursor-pointer hover:bg-white/25 p-1 rounded-lg">
+				className="flex items-center cursor-pointer hover:bg-white/25 p-2 rounded-lg">
 				<img
 					src="https://lh3.googleusercontent.com/a/ALm5wu3poeMxmKWHEsA7MTpEWEHeOI7uBbPpp4_dgP7e=s96-c"
 					alt=""

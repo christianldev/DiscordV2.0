@@ -9,13 +9,10 @@ import {Theme} from './utils/ThemeUtils';
 import {useSelector} from 'react-redux';
 import {Login} from './pages/Login';
 import Register from './pages/Register';
-import {Home} from './pages/Home';
-import {Profile} from './pages/Profile';
+
 import PrivateRoute from './router/PrivateRoute';
 import {Toaster} from 'react-hot-toast';
-import NotFound from './pages/NotFound';
-import Friends from './pages/Friends';
-import InitialDashboard from './components/InitialDashboard/InitialDashboard';
+
 import Navigation from './router/Navigation';
 
 const Landing = lazy(() => import('./pages/Landing'));

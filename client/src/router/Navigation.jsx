@@ -4,7 +4,6 @@ import routes from './routes';
 import {map} from 'lodash';
 
 export default function Navigation() {
-	console.log(routes);
 	return (
 		<Routes>
 			{map(routes, (route, index) => (

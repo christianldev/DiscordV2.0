@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {logout} from '../../redux/reducers/authReducer';
 import store from '../../redux/store';
 import UserUtils from '../../utils/UserUtils';
+import {RiLogoutBoxRLine} from 'react-icons/ri';
 
 const ProfileCardMenu = () => {
 	const navigate = useNavigate();
@@ -13,67 +14,41 @@ const ProfileCardMenu = () => {
 	};
 
 	return (
-		<section className="w-64 mx-auto bg-[#20354b] rounded-2xl px-8 py-6 shadow-lg">
-			<div className="flex items-center justify-between">
-				<span className="text-gray-400 text-sm">
-					2d ago
-				</span>
-				<span className="text-emerald-400">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor">
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-						/>
-					</svg>
-				</span>
-			</div>
-			<div className="mt-6 w-fit mx-auto">
-				<img
-					src="https://api.lorem.space/image/face?w=120&h=120&hash=bart89fe"
-					className="rounded-full w-28 "
-					alt="profile picture"
-				/>
-			</div>
-
-			<div className="mt-8 ">
-				<h2 className="text-white font-bold text-lg tracking-wide">
-					Jonathan <br /> Smith
-				</h2>
-			</div>
-			<p className="text-emerald-400 font-semibold text-xs mt-2.5">
-				Active
-			</p>
-
-			<div className="mt-3 text-white text-sm bg-slate-600 hover:bg-red-800 p-2 rounded-lg">
-				<button
-					onClick={signOut}
-					className="flex items-center justify-between w-full">
-					<span className="flex items-center text-xs">
+		<div className="break-inside p-6 flex flex-col justify-between rounded-xl mb-4  bg-[#212226] text-white">
+			<div className="space-y-4">
+				<div className="flex items-center flex-col justify-center text-center space-y-4">
+					<img
+						className="flex-none w-20 h-20 rounded-full ring-4 ring-[#4A3FE4] border-4 border-black object-cover"
+						src="https://randomuser.me/api/portraits/women/55.jpg"
+						alt="avatar"
+					/>
+					<div className="text-center">
+						<a href="#" className="text-lg font-bold block">
+							Monica De Armas
+						</a>
+						<span className="text-slate-100">
+							Dog Trainer 🐶
+						</span>
+					</div>
+				</div>
+				<div className="space-y-4 text-center">
+					<h4 className="text-2xl font-extrabold leading-snug text-slate-500 dark:text-white">
+						Web Design templates Selection
+					</h4>
+					{/* <p>
+						Minim dolor in amet nulla laboris enim dolore
+						consequ.
+					</p> */}
+					<button
+						onClick={signOut}
+						className="py-2 px-4 font-bold rounded-full text-white bg-gradient-to-tr 
+							from-[#4A3FE4] to-[#500ca8] hover:shadow-2xl">
 						Cerrar sesión
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-6 w-6 ml-2"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor">
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								d="M17 8l4 4m0 0l-4 4m4-4H3"
-							/>
-						</svg>
-					</span>
-				</button>
+						<RiLogoutBoxRLine className="inline-block h-5 w-5 ml-2" />
+					</button>
+				</div>
 			</div>
-		</section>
+		</div>
 	);
 };
 

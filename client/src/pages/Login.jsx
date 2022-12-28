@@ -42,7 +42,6 @@ export const Login = () => {
 				UserUtils.logged(response, navigate);
 			})
 			.catch((error) => {
-				console.log(error);
 				add({
 					icon: <RiErrorWarningFill />,
 					type: 'error',

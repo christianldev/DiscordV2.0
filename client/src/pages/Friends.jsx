@@ -1,25 +1,35 @@
 import React from 'react';
+import {useState} from 'react';
+import services from '../services';
 
 export default function Friends() {
+	const [targetMailAddress, setTargetEmail] = useState('');
+
+	const handleFriendRequest = () => {
+		services.friend.sendFriendInvitation({
+			targetMailAddress,
+		});
+	};
+
 	return (
-		<div class="flex-1 flex-shrink min-w-0 flex justify-between bg-[#393943]">
-			<div class="flex-1 min-w-0 overflow-hidden h-full flex items-center justify-between">
-				<div class="flex-1 flex-shrink min-w-0 h-full flex items-center justify-center">
+		<div className="flex-1 flex-shrink min-w-0 flex justify-between bg-[#393943]">
+			<div className="flex-1 min-w-0 overflow-hidden h-full flex items-center justify-between">
+				<div className="flex-1 flex-shrink min-w-0 h-full flex items-center justify-center">
 					<div className="bg-[#36393F] h-screen bg-cover object-cover w-full">
 						<svg
 							viewBox="0 0 376 162"
 							xmlns="http://www.w3.org/2000/svg"
 							className="absolute w-[450px] top-[40%] left-[15%] overflow-hidden ml-[345px]">
-							<g fill="none" fill-rule="evenodd">
+							<g fill="none" fillRule="evenodd">
 								<path
 									d="m115.1762 78.9373h29.522c15.563 0 28.295-12.733 28.295-28.295s-12.732-28.295-28.295-28.295h-29.522c-15.562 0-28.295 12.733-28.295 28.295s12.733 28.295 28.295 28.295"
 									fill="#4f545c"
-									fill-opacity=".3"
+									fillOpacity=".3"
 								/>
 								<path
 									d="m372.2148 68.1682c0 25.299-20.509 45.808-45.808 45.808h-36.096c-4.38 0-7.93 3.55-7.93 7.93v.003c0 4.38 3.55 7.93 7.93 7.93h47.338c7.936 0 14.369 6.433 14.369 14.369 0 7.935-6.433 14.368-14.369 14.368h-281.628c-18.806 0-34.05-15.245-34.05-34.05v-.008c0-18.805 15.244-34.05 34.05-34.05h93.106c18.805 0 34.049-15.245 34.049-34.05v-.008c0-18.805 15.246-34.05 34.051-34.05h109.18c25.299 0 45.808 20.509 45.808 45.808"
 									fill="#4f545c"
-									fill-opacity=".3"
+									fillOpacity=".3"
 								/>
 								<path
 									d="m26.4081 150.7307c-.726 1.564-.758 3.366-.093 4.955l.193.307c.027.043.051.088.071.134.706 1.629 2.081 2.872 3.774 3.409.64.203 1.301.297 1.957.286.052-7.643-3.27-10.24-4.556-10.95-.554.526-1.017 1.151-1.346 1.859"
@@ -130,13 +140,15 @@ export default function Friends() {
 									name=""
 									id=""
 									placeholder="Enter a User Name #000"
-									className="w-full rounded h-16 bg-[#303238] focus:outline-0 px-2 text-sm text-gray-400  pl-3 ring-1 ring-black focus:ring-blue-500"
+									className="w-full rounded h-16 bg-[#303238] focus:outline-0 px-2 text-sm text-white/50  pl-3 ring-1 ring-black focus:ring-blue-500"
 									onChange={(e) => {
-										setName(e.target.value);
+										setTargetEmail(e.target.value);
 									}}
 								/>
-								{name ? (
-									<button className="absolute flex -ml-64 justify-end items-end mt-3 bg-firstColor cursor-pointer px-4 py-2 rounded-lg text-sm font-bold text-white md:inline">
+								{targetMailAddress ? (
+									<button
+										onClick={handleFriendRequest}
+										className="absolute flex -ml-64 justify-end items-end mt-3 bg-firstColor cursor-pointer px-4 py-2 rounded-lg text-sm font-bold text-white md:inline">
 										Send a Friend Request
 									</button>
 								) : (

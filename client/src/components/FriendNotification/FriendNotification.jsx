@@ -8,15 +8,15 @@ export default function FriendNotification() {
 					<a
 						href="#"
 						className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform  hover:bg-gray-50 dark:hover:bg-gray-700 ">
-						<div class="flex-shrink-0">
+						<div className="flex-shrink-0">
 							<img
 								className="flex-shrink-0 object-cover w-10 h-10 mx-1 rounded-full"
 								src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
 								alt="Jese image"
 							/>
-							<div class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
+							<div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
 								<svg
-									class="w-3 h-3 text-white"
+									className="w-3 h-3 text-white"
 									aria-hidden="true"
 									fill="currentColor"
 									viewBox="0 0 20 20"
@@ -26,15 +26,15 @@ export default function FriendNotification() {
 								</svg>
 							</div>
 						</div>
-						<div class="pl-3 w-full">
-							<div class="text-gray text-xs mb-1.5 dark:text-gray-400">
-								<span class="font-semibold text-gray dark:text-white">
+						<div className="pl-3 w-full">
+							<div className="text-gray text-xs mb-1.5 dark:text-gray-400">
+								<span className="font-semibold text-gray dark:text-white">
 									Jese Leos
 								</span>
 								: "Hey, what's up? All set for the
 								presentation?"
 							</div>
-							<div class="text-xs text-sky-500">
+							<div className="text-xs text-sky-500">
 								a few moments ago
 							</div>
 						</div>
@@ -42,15 +42,15 @@ export default function FriendNotification() {
 					<a
 						href="#"
 						className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform hover:bg-gray-50 dark:hover:bg-gray-700 ">
-						<div class="flex-shrink-0">
+						<div className="flex-shrink-0">
 							<img
 								className="flex-shrink-0 object-cover w-10 h-10 mx-1 rounded-full"
 								src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
 								alt="Jese image"
 							/>
-							<div class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
+							<div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
 								<svg
-									class="w-3 h-3 text-white"
+									className="w-3 h-3 text-white"
 									aria-hidden="true"
 									fill="currentColor"
 									viewBox="0 0 20 20"
@@ -60,15 +60,15 @@ export default function FriendNotification() {
 								</svg>
 							</div>
 						</div>
-						<div class="pl-3 w-full">
-							<div class="text-gray text-xs mb-1.5 dark:text-gray-400">
-								<span class="font-semibold text-gray dark:text-white">
+						<div className="pl-3 w-full">
+							<div className="text-gray text-xs mb-1.5 dark:text-gray-400">
+								<span className="font-semibold text-gray dark:text-white">
 									Jese Leos
 								</span>
 								: "Hey, what's up? All set for the
 								presentation?"
 							</div>
-							<div class="text-xs text-sky-500">
+							<div className="text-xs text-sky-500">
 								a few moments ago
 							</div>
 						</div>
@@ -76,15 +76,15 @@ export default function FriendNotification() {
 					<a
 						href="#"
 						className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform  hover:bg-gray-50 dark:hover:bg-gray-700 ">
-						<div class="flex-shrink-0">
+						<div className="flex-shrink-0">
 							<img
 								className="flex-shrink-0 object-cover w-10 h-10 mx-1 rounded-full"
 								src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
 								alt="Jese image"
 							/>
-							<div class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
+							<div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-blue-600 rounded-full border border-white dark:border-gray-800">
 								<svg
-									class="w-3 h-3 text-white"
+									className="w-3 h-3 text-white"
 									aria-hidden="true"
 									fill="currentColor"
 									viewBox="0 0 20 20"
@@ -94,15 +94,15 @@ export default function FriendNotification() {
 								</svg>
 							</div>
 						</div>
-						<div class="pl-3 w-full">
-							<div class="text-gray text-xs mb-1.5 dark:text-gray-400">
-								<span class="font-semibold text-gray dark:text-white">
+						<div className="pl-3 w-full">
+							<div className="text-gray text-xs mb-1.5 dark:text-gray-400">
+								<span className="font-semibold text-gray dark:text-white">
 									Jese Leos
 								</span>
 								: "Hey, what's up? All set for the
 								presentation?"
 							</div>
-							<div class="text-xs text-sky-500">
+							<div className="text-xs text-sky-500">
 								a few moments ago
 							</div>
 						</div>

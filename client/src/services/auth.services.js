@@ -9,7 +9,7 @@ export class AuthenticationService extends ApiService {
 	login(payload) {
 		return new Promise((resolve, reject) => {
 			super
-				.post(payload, 'login')
+				.post(payload, '/login')
 				.then((response) => {
 					store.dispatch(login(response));
 					resolve(response);
@@ -36,7 +36,7 @@ export class AuthenticationService extends ApiService {
 	register(payload) {
 		return new Promise((resolve, reject) => {
 			super
-				.post(payload, 'register')
+				.post(payload, '/register')
 				.then((response) => {
 					if (response && response.user) {
 						store.dispatch(login(response));

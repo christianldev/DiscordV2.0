@@ -1,9 +1,12 @@
 import server from '../interceptors/axios.interceptor';
+import {axiosPrivate} from '../utils/AxiosUtils';
 
 export class ApiService {
 	controller;
+	axiosPrivate;
 	constructor(controller) {
-		this.controller = controller + '/';
+		this.controller = controller;
+		this.axiosPrivate = axiosPrivate;
 	}
 	getAll(method = 'GetAll', headers) {
 		return new Promise((resolve, reject) => {
@@ -43,7 +46,7 @@ export class ApiService {
 	}
 	post(data, method = 'Create', headers) {
 		return new Promise((resolve, reject) => {
-			server
+			axiosPrivate
 				.post(this.controller + `${method}`, data, {
 					headers,
 				})

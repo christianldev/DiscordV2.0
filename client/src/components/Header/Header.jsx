@@ -113,7 +113,7 @@ export default function Header() {
 								<span className="inline-flex rounded-md shadow">
 									<Link
 										to={authenticated ? '/home' : '/login'}
-										className="inline-flex items-center px-8 py-2 border border-transparent text-sm font-medium rounded-full text-theme-600 dark:text-gray-700 bg-white dark:bg-purple-800 hover:bg-gray-50">
+										className="inline-flex items-center px-8 py-2 border border-transparent text-sm font-medium rounded-full bg-white text-slate-700">
 										{!authenticated ? (
 											<div>Iniciar sesion</div>
 										) : (

@@ -36,8 +36,8 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Toaster />
-			<Routes>
-				{!authenticated && (
+			{!authenticated && (
+				<Routes>
 					<Route path="/">
 						<Route index element={<Landing />} />
 						<>
@@ -48,8 +48,8 @@ function App() {
 							/>
 						</>
 					</Route>
-				)}
-			</Routes>
+				</Routes>
+			)}
 			{authenticated && (
 				<PrivateRoute>
 					<Navigation />

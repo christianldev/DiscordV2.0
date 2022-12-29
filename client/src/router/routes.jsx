@@ -12,6 +12,7 @@ import NotFound from '../pages/NotFound';
 
 const routes = [
 	{
+		path: '/',
 		index: true,
 		layout: <AppLayout />,
 		element: <InitialDashboard />,

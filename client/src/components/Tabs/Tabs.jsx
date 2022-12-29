@@ -5,6 +5,9 @@ import {
 } from 'react-icons/ri';
 import FriendNotification from '../FriendNotification/FriendNotification';
 import {Link, useNavigate} from 'react-router-dom';
+import store from '../../redux/store';
+import UserUtils from '../../utils/UserUtils';
+import {logout} from '../../redux/reducers/authReducer';
 
 const Tabs = () => {
 	const [dropdown, setDropdown] = useState(false);

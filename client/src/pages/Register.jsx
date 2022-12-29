@@ -12,6 +12,7 @@ import RegisterValidationScheme from '../helpers/RegisterValidationScheme';
 import services from '../services';
 import UserUtils from '../utils/UserUtils';
 import {useToast} from '../hooks/useToast';
+import {RiErrorWarningFill} from 'react-icons/ri';
 
 function Register() {
 	const navigate = useNavigate();

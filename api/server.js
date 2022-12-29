@@ -15,7 +15,7 @@ app.use(cors());
 
 // register routes
 app.use('/api/auth', authRoutes);
-app.use('api/friend-invitations', friendInvitationRoutes);
+app.use('/api/friend', friendInvitationRoutes);
 
 let PORT;
 process.env.STATUS === 'production'

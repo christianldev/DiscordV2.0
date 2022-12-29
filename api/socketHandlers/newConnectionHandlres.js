@@ -5,8 +5,16 @@ const newConnectionHandler = async (socket, io) => {
 
 	serverStore.addNewConnectedUser({
 		socketId: socket.id,
-		userId: userDetails._id,
+		userId: userDetails.userId,
 	});
+
+	// // update pending friends invitations list
+	// friendsUpdate.updateFriendsPendingInvitations(
+	// 	userDetails.userId
+	// );
+
+	// // update friends list
+	// friendsUpdate.updateFriends(userDetails.userId);
 };
 
 export default newConnectionHandler;

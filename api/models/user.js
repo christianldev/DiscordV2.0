@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 	},
+	friends: [
+		{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+	],
 });
 
 userSchema.pre('save', async function (next) {
@@ -38,6 +41,6 @@ userSchema.methods.matchPassword = async function (
 	);
 };
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;

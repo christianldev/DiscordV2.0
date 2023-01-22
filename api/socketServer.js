@@ -1,27 +1,30 @@
-import {Server} from 'socket.io';
-import verifyTokenSocket from './middleware/authSocket.js';
-import disconnectHandler from './socketHandlers/disconnectHandler.js';
-import newConnectionHandler from './socketHandlers/newConnectionHandlres.js';
+import { Server } from "socket.io";
+import verifyTokenSocket from "./middleware/authSocket.js";
+import serverStore from "./serverStore.js";
+import disconnectHandler from "./socketHandlers/disconnectHandler.js";
+import newConnectionHandler from "./socketHandlers/newConnectionHandlres.js";
 
 const registerSocketServer = (server) => {
-	const io = new Server(server, {
-		cors: {
-			origin: '*',
-			methods: ['GET', 'POST'],
-			credentials: true,
-		},
-	});
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+      credentials: true,
+    },
+  });
 
-	io.use((socket, next) => {
-		verifyTokenSocket(socket, next);
-	});
+  serverStore.setSocketServerInstance(io);
 
-	io.on('connection', (socket) => {
-		newConnectionHandler(socket, io);
-		socket.on('disconnect', () => {
-			disconnectHandler(socket);
-		});
-	});
+  io.use((socket, next) => {
+    verifyTokenSocket(socket, next);
+  });
+
+  io.on("connection", (socket) => {
+    newConnectionHandler(socket, io);
+    socket.on("disconnect", () => {
+      disconnectHandler(socket);
+    });
+  });
 };
 
 export default registerSocketServer;

@@ -60,7 +60,9 @@ const sendInvitation = async (req, res) => {
     console.log("alreadyFriends", alreadyFriends);
 
     if (alreadyFriends) {
-      return res.status(409).send({ message: "You are already friends" });
+      return res
+        .status(409)
+        .send({ message: `Ya eres amigo de ${targetMailAddress}` });
     }
 
     const invitation = await FriendInvitation.create({
@@ -72,7 +74,7 @@ const sendInvitation = async (req, res) => {
     //send pending invitations update to specific user
     updateFriendsPendingInvitations(targetUser._id.toString());
 
-    res.status(201).send({ message: "Invitation has been sent" });
+    res.status(201).send({ message: "Invitacion enviada" });
   } catch (error) {
     console.log("error", error);
 

@@ -38,8 +38,8 @@ const getOnlineUsers = () => {
 const getActiveConnections = (userId) => {
   const activeConnections = [];
 
-  connectedUsers.forEach(function (key, value) {
-    if (key.userId === userId) {
+  connectedUsers.forEach(function (value, key) {
+    if (value.userId === userId) {
       activeConnections.push(key);
     }
   });

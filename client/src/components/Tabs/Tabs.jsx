@@ -6,9 +6,7 @@ import store from "../../redux/store";
 import UserUtils from "../../utils/UserUtils";
 import { logout } from "../../redux/reducers/authReducer";
 
-const Tabs = () => {
-  const [dropdown, setDropdown] = useState(false);
-
+const Tabs = ({ dropdown, setDropdown }) => {
   const navigate = useNavigate();
 
   const signOut = () => {

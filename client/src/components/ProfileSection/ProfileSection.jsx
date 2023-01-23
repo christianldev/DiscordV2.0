@@ -21,7 +21,7 @@ const ProfileSection = ({
     >
       <div
         onClick={() => handlerModal("profileCard")}
-        className="flex items-center cursor-pointer hover:bg-white/25 p-2 rounded-lg"
+        className="flex items-center cursor-pointer w-1/2 hover:bg-white/25 p-2 rounded-lg"
       >
         <img
           src="https://lh3.googleusercontent.com/a/ALm5wu3poeMxmKWHEsA7MTpEWEHeOI7uBbPpp4_dgP7e=s96-c"

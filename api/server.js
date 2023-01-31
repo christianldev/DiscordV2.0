@@ -6,6 +6,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
 import friendInvitationRoutes from "./routes/friendInvitationRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
 import registerSocketServer from "./socketServer.js";
 import displayRoutes from "express-routemap";
 
@@ -17,6 +18,7 @@ app.use(cors());
 // register routes
 app.use("/api/auth", authRoutes);
 app.use("/api/friend", friendInvitationRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 let PORT;
 process.env.STATUS === "production"

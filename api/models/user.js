@@ -1,46 +1,38 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-	username: {
-		type: String,
-		required: true,
-		unique: true,
-		trim: true,
-	},
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-		trim: true,
-	},
-	password: {
-		type: String,
-		required: true,
-		trim: true,
-	},
-	friends: [
-		{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	],
-});
+const userSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    avatar: { type: String },
 
-userSchema.pre('save', async function (next) {
-	const user = this,
-		salt = await bcrypt.genSalt(10);
+    newMessagePopup: { type: Boolean, default: true },
 
-	user.password = await bcrypt.hash(user.password, salt);
-	next();
-});
+    unreadMessage: { type: Boolean, default: false },
 
-userSchema.methods.matchPassword = async function (
-	enteredPassword
-) {
-	return await bcrypt.compare(
-		enteredPassword,
-		this.password
-	);
-};
+    unreadNotification: { type: Boolean, default: false },
+    friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

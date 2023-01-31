@@ -28,7 +28,7 @@ store.subscribe(
       account: store.getState().account,
       auth: store.getState().auth,
       theme: store.getState().theme,
-      friends: store.getState().friends,
+      // friends: store.getState().friends,
     });
   }, 1000)
 );

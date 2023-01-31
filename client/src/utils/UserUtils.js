@@ -36,6 +36,7 @@ const profileName = (user) => {
 };
 
 const logged = (response, navigate) => {
+  console.log("logged", response);
   const decoded = jwt_decode(response.access_token);
   store.dispatch(login(response));
   store.dispatch(setLogged(decoded));

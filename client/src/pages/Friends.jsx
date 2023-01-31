@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useToast } from "../hooks/useToast";
-import { RiErrorWarningFill } from "react-icons/ri";
+import { RiErrorWarningFill, RiCheckboxCircleFill } from "react-icons/ri";
 import services from "../services";
 
 export default function Friends() {
@@ -12,18 +12,29 @@ export default function Friends() {
   const handleFriendRequest = async () => {
     setLoading(true);
     try {
-      await services.friend.sendFriendInvitation({
+      const response = await services.friend.sendFriendInvitation({
         targetMailAddress,
       });
+
+      add({
+        icon: <RiCheckboxCircleFill />,
+        type: "success",
+        message: (
+          <div className="text-center">
+            <h5 className="rounded-sm text-xs text-indigo-700">
+              {response.message}
+            </h5>
+          </div>
+        ),
+      });
     } catch (error) {
+      console.log(error);
       add({
         icon: <RiErrorWarningFill />,
         type: "error",
         message: (
           <div className="text-center">
-            <h5 className="rounded-sm text-xs text-white">
-              {error.response.data.message}
-            </h5>
+            <h5 className="rounded-sm text-xs text-white">{error.message}</h5>
           </div>
         ),
       });

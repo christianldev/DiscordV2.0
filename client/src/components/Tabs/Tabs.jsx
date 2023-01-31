@@ -5,14 +5,43 @@ import { Link, useNavigate } from "react-router-dom";
 import store from "../../redux/store";
 import UserUtils from "../../utils/UserUtils";
 import { logout } from "../../redux/reducers/authReducer";
+import { useToast } from "../../hooks/useToast";
+import { useEffect } from "react";
+import server from "../../interceptors/axios.interceptor";
 
 const Tabs = ({ dropdown, setDropdown }) => {
   const navigate = useNavigate();
+  const { add } = useToast();
+  const [notifications, setNotifications] = useState([]);
+  const {
+    friends: { pendingFriendsInvitations },
+    account,
+  } = store.getState();
 
   const signOut = () => {
     store.dispatch(logout());
     UserUtils.loggedOut(navigate);
   };
+
+  useEffect(() => {
+    const notificationRead = async () => {
+      try {
+        const response = await server.get(`/notifications`, {
+          headers: { userId: account.user.userId },
+        });
+        console.log(response);
+        setNotifications(response.data.notifications);
+      } catch (error) {
+        add({
+          title: "Error",
+          description: error.response.data.message,
+          icon: <RiErrorWarningFill className="text-red-500" />,
+        });
+      }
+    };
+
+    notificationRead();
+  }, [pendingFriendsInvitations]);
 
   return (
     <div className="w-full h-20 md:h-16 px-6 shadow-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-between">
@@ -81,6 +110,14 @@ const Tabs = ({ dropdown, setDropdown }) => {
                 className="p-2 text-xs rounded bg-[#393943] hover:bg-firstColor text-white shadow-md flex items-center justify-center"
               >
                 <RiNotification3Fill className="h-5 w-5 text-white" />
+                {notifications.length > 0 && (
+                  <span
+                    className="bg-green-500 rounded-full h-4 w-4 font-bold absolute top-3 right-12
+                    transform  animate-bounce"
+                  >
+                    {notifications.length}
+                  </span>
+                )}
               </button>
               <button
                 onClick={signOut}
@@ -91,7 +128,11 @@ const Tabs = ({ dropdown, setDropdown }) => {
             </div>
           </div>
         </div>
-        {dropdown && <FriendNotification />}
+        {dropdown && (
+          <FriendNotification
+            pendingFriendsInvitations={pendingFriendsInvitations}
+          />
+        )}
       </div>
     </div>
   );

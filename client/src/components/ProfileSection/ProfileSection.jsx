@@ -1,7 +1,7 @@
 import React from "react";
-import useModalForm from "../../hooks/useModalForm";
 import store from "../../redux/store";
 import ModalStructure from "../ModalStructure";
+import avatar from "../../assets/img/avatar.svg";
 
 const ProfileSection = ({
   setShowModal,
@@ -24,9 +24,9 @@ const ProfileSection = ({
         className="flex items-center cursor-pointer w-1/2 hover:bg-white/25 p-2 rounded-lg"
       >
         <img
-          src="https://lh3.googleusercontent.com/a/ALm5wu3poeMxmKWHEsA7MTpEWEHeOI7uBbPpp4_dgP7e=s96-c"
+          src={avatar}
           alt=""
-          className="w-8 h-8 rounded-full"
+          className="w-8 h-8 rounded-full bg-slate-400"
         />
         <div className=" pl-2">
           <p className="text-xs">{user.username}</p>

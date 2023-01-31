@@ -1,46 +1,52 @@
+import axios from "axios";
+import { logout } from "../redux/reducers/authReducer";
 import store from "../redux/store";
 
-import { useEffect } from "react";
-import { axiosPrivate } from "../utils/AxiosUtils";
-import { useToast } from "../hooks/useToast";
-import { RiErrorWarningFill } from "react-icons/ri";
-
-const useAxiosPrivate = () => {
-  const { auth } = store.getState();
-  const { add } = useToast();
-
-  useEffect(() => {
-    const requestIntercept = axiosPrivate.interceptors.request.use(
-      (config) => {
-        console.log(config);
-        if (!config.headers["Authorization"]) {
-          config.headers["Authorization"] = `Bearer ${auth?.access_token}`;
-        }
-        return config;
-      },
-      (error) => {
-        console.log(error);
-        return Promise.reject(error);
-      }
-    );
-
-    const responseIntercept = axiosPrivate.interceptors.response.use(
-      (response) => {
-        console.log(response);
-        return response;
-      },
-      function (error) {
-        return Promise.reject(error);
-      }
-    );
-
-    return () => {
-      axiosPrivate.interceptors.request.eject(requestIntercept);
-      axiosPrivate.interceptors.response.eject(responseIntercept);
-    };
-  }, [auth]);
-
-  return axiosPrivate;
+const apiUrl = import.meta.env.VITE_REACT_APP_SERVER_URL?.toString() || "";
+const config = {
+  baseURL: apiUrl,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 };
+const server = axios.create(config);
 
-export default useAxiosPrivate;
+server.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+
+server.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.status === 401 || error?.toString().includes("status code 401")) {
+      store.dispatch(logout());
+      window.location.replace("/login");
+      return;
+    }
+    if (error.response?.data) {
+      return Promise.reject(error.response.data);
+    } else if (error.message) {
+      return Promise.reject(error.message);
+    } else {
+      return Promise.reject(error);
+    }
+  }
+);
+
+server.interceptors.request.use(
+  (config) => {
+    if (!config.headers) {
+      return config;
+    }
+    const { auth } = store.getState();
+    if (auth.access_token) {
+      config.headers.Authorization = `Bearer ${auth.access_token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+export default server;

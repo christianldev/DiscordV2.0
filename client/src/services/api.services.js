@@ -1,16 +1,13 @@
-import useAxiosPrivate from "../interceptors/axios.interceptor";
-import { axiosPrivate } from "../utils/AxiosUtils";
+import server from "../interceptors/axios.interceptor";
 
 export class ApiService {
   controller;
-  useAxiosPrivate;
   constructor(controller) {
-    this.controller = controller;
-    this.axiosPrivate = useAxiosPrivate;
+    this.controller = controller + "/";
   }
   getAll(method = "GetAll", headers) {
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .get(this.controller + `${method}`, {
           headers,
         })
@@ -32,7 +29,7 @@ export class ApiService {
       method += "/" + id;
     }
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .get(this.controller + method, {
           headers,
         })
@@ -46,7 +43,7 @@ export class ApiService {
   }
   post(data, method = "Create", headers) {
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .post(this.controller + `${method}`, data, {
           headers,
         })
@@ -60,7 +57,7 @@ export class ApiService {
   }
   download(data, method = "Download", headers) {
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .post(this.controller + `${method}`, data, {
           responseType: "blob",
           headers,
@@ -75,7 +72,7 @@ export class ApiService {
   }
   upload(fileData, method = "Upload") {
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .post(this.controller + `${method}`, fileData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
@@ -89,7 +86,7 @@ export class ApiService {
   }
   put(id, data, method = "Update", headers) {
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .put(this.controller + `${method}/${id}`, data, {
           headers,
         })
@@ -106,7 +103,7 @@ export class ApiService {
       method += "/" + id;
     }
     return new Promise((resolve, reject) => {
-      axiosPrivate
+      server
         .delete(this.controller + `${method}`, {
           headers,
         })

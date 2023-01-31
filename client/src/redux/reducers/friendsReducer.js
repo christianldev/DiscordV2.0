@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   friends: [],
   pendingFriendsInvitations: [],
+
   onlineUsers: [],
 };
 
@@ -14,13 +15,23 @@ export const friendsSlice = createSlice({
       return action.payload;
     },
     setPendingFriendsInvitations: (state, { payload }) => {
-      console.log("setPendingFriendsInvitations");
-      console.log(payload);
       state.pendingFriendsInvitations = payload;
     },
     setFriends: (state, { payload }) => {
       state.friends = payload;
     },
+    acceptFriendInvitation: (state, { payload }) => {
+      state.friends.push(payload);
+      state.pendingFriendsInvitations = state.pendingFriendsInvitations.filter(
+        (invitation) => invitation.id !== payload.id
+      );
+    },
+    rejectFriendInvitation: (state, { payload }) => {
+      state.pendingFriendsInvitations = state.pendingFriendsInvitations.filter(
+        (invitation) => invitation.id !== payload
+      );
+    },
+
     setOnlineUsers: (state, { payload }) => {
       state.onlineUsers = payload;
     },
@@ -37,6 +48,8 @@ export const {
   setPendingFriendsInvitations,
   setFriends,
   setOnlineUsers,
+  acceptFriendInvitation,
+  rejectFriendInvitation,
   resetFriendsState,
 } = friendsSlice.actions;
 

@@ -1,24 +1,44 @@
 import React from "react";
 import store from "../../redux/store";
-import { RiCheckFill, RiCloseFill } from "react-icons/ri";
+import { RiCheckFill, RiCloseFill, RiErrorWarningFill } from "react-icons/ri";
+import services from "../../services";
+import { useToast } from "../../hooks/useToast";
+import server from "../../interceptors/axios.interceptor";
+import { useEffect } from "react";
 
-export default function FriendNotification() {
-  const {
-    friends: { pendingFriendsInvitations },
-  } = store.getState();
+export default function FriendNotification({ pendingFriendsInvitations }) {
+  const { account } = store.getState();
 
-  console.log(pendingFriendsInvitations);
+  const { add } = useToast();
+
+  const handleAcceptFriend = (friendId) => {
+    console.log(friendId);
+    services.friend
+      .acceptFriendInvitation(friendId)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        add({
+          title: "Error",
+          description: err.response.data.message,
+          icon: <RiErrorWarningFill className="text-red-500" />,
+        });
+      });
+  };
+
+  const handleRejectFriend = (friend) => {
+    console.log(friend);
+  };
 
   return (
     <div className="relative inline-block">
       <div className="absolute right-0 z-20 w-64 mt-6 overflow-hidden bg-[#292b2f]  rounded-lg shadow-lg sm:w-80 dark:bg-gray-800">
         {pendingFriendsInvitations.length > 0 ? (
           pendingFriendsInvitations.map((friend) => (
-            <div className="py-2">
-              <a
-                href="#"
-                className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform  hover:bg-gray-50 dark:hover:bg-gray-700 "
-              >
+            <div key={friend.senderId._id} className="py-2">
+              <div className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform  hover:bg-gray-50 dark:hover:bg-gray-700 ">
                 <div className="flex-shrink-0">
                   <img
                     className="flex-shrink-0 object-cover w-10 h-10 mx-1 rounded-full"
@@ -38,9 +58,12 @@ export default function FriendNotification() {
                   </div>
                   <div className="text-xs text-sky-500">a few moments ago</div>
                 </div>
-                <div class="flex-none px-4 py-2 text-stone-600 text-xs md:text-sm">
+                <div className="flex-none px-4 py-2 text-stone-600 text-xs md:text-sm">
                   <div className=" inline-flex justify-end">
-                    <button className="flex bg-green-500 hover:bg-green-600 px-2 ml-2 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full">
+                    <button
+                      onClick={() => handleAcceptFriend(friend._id)}
+                      className="flex bg-green-500 hover:bg-green-600 px-2 ml-2 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full"
+                    >
                       <RiCheckFill />
                     </button>
                     <button className="flex bg-red-500 hover:bg-red-600 px-2 ml-2 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full">
@@ -48,12 +71,12 @@ export default function FriendNotification() {
                     </button>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           ))
         ) : (
-          <h3 className="text-center text-sm text-white">
-            No pending invitations
+          <h3 className="text-center text-xs p-2 text-white">
+            No hay invitaciones pendientes
           </h3>
         )}
 

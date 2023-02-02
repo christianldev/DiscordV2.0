@@ -115,7 +115,7 @@ const Tabs = ({ dropdown, setDropdown }) => {
                 <RiNotification3Fill className="h-5 w-5 text-white" />
                 {notifications.length > 0 && (
                   <span
-                    className="bg-green-500 rounded-full h-4 w-4 font-bold absolute top-3 right-12
+                    className="bg-green-500 rounded-full h-4 w-4 font-bold absolute top-3 right-12 
                     transform  animate-bounce"
                   >
                     {notifications.length}
@@ -131,7 +131,18 @@ const Tabs = ({ dropdown, setDropdown }) => {
             </div>
           </div>
         </div>
-        {dropdown && <FriendNotification />}
+        {/* 
+      blur effect on the background when the dropdown is open
+     */}
+        {dropdown && (
+          <>
+            <div
+              onClick={() => setDropdown(!dropdown)}
+              className="fixed inset-0 bg-black opacity-50 z-10"
+            ></div>
+            <FriendNotification />
+          </>
+        )}
       </div>
     </div>
   );

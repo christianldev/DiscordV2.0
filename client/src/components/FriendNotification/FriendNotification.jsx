@@ -1,18 +1,15 @@
 import React from "react";
-import store from "../../redux/store";
+
 import { RiCheckFill, RiCloseFill, RiErrorWarningFill } from "react-icons/ri";
 import services from "../../services";
 import { useToast } from "../../hooks/useToast";
-import server from "../../interceptors/axios.interceptor";
-import { useEffect } from "react";
+
 import { connect, useSelector } from "react-redux";
 
 export function FriendNotification() {
-  const { account } = store.getState();
   const {
     friends: { pendingFriendsInvitations },
   } = useSelector((state) => state);
-  console.log(pendingFriendsInvitations);
 
   const { add } = useToast();
 
@@ -21,7 +18,11 @@ export function FriendNotification() {
     services.friend
       .acceptFriendInvitation(friendId)
       .then((res) => {
-        console.log(res);
+        add({
+          title: "Amigo aceptado",
+          description: res.data.message,
+          icon: <RiCheckFill className="text-green-500" />,
+        });
       })
       .catch((err) => {
         console.log(err);

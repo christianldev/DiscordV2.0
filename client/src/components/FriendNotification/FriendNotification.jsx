@@ -5,9 +5,14 @@ import services from "../../services";
 import { useToast } from "../../hooks/useToast";
 import server from "../../interceptors/axios.interceptor";
 import { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
 
-export default function FriendNotification({ pendingFriendsInvitations }) {
+export function FriendNotification() {
   const { account } = store.getState();
+  const {
+    friends: { pendingFriendsInvitations },
+  } = useSelector((state) => state);
+  console.log(pendingFriendsInvitations);
 
   const { add } = useToast();
 
@@ -90,3 +95,7 @@ export default function FriendNotification({ pendingFriendsInvitations }) {
     </div>
   );
 }
+
+export default connect((state) => ({
+  pendingFriendsInvitations: state.pendingFriendsInvitations,
+}))(FriendNotification);

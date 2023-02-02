@@ -1,5 +1,9 @@
 import io from "socket.io-client";
-import { setPendingFriendsInvitations } from "../redux/reducers/friendsReducer";
+import {
+  setPendingFriendsInvitations,
+  setUnreadFriendsInvitations,
+} from "../redux/reducers/friendsReducer";
+
 import store from "../redux/store";
 
 let socket = null;
@@ -21,8 +25,8 @@ export const connectWithSocketServer = (token) => {
     store.dispatch(setPendingFriendsInvitations(pendingInvitations));
   });
 
-  // socket.on("friend-notification", (data) => {
-  //   console.log("friend notification event");
-  //   console.log(data);
-  // });
+  socket.on("read-notification", (data) => {
+    const { invitationId } = data;
+    store.dispatch(setUnreadFriendsInvitations(invitationId));
+  });
 };

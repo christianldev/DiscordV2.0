@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   friends: [],
   pendingFriendsInvitations: [],
-
+  count: 0,
   onlineUsers: [],
 };
 
@@ -16,6 +16,19 @@ export const friendsSlice = createSlice({
     },
     setPendingFriendsInvitations: (state, { payload }) => {
       state.pendingFriendsInvitations = payload;
+    },
+    setUnreadFriendsInvitations: (state, { payload }) => {
+      state.pendingFriendsInvitations = state.pendingFriendsInvitations.map(
+        (invitation) => {
+          if (invitation.id === payload) {
+            return {
+              ...invitation,
+              unreadNotification: false,
+            };
+          }
+          return invitation;
+        }
+      );
     },
     setFriends: (state, { payload }) => {
       state.friends = payload;
@@ -46,6 +59,7 @@ export const friendsSlice = createSlice({
 export const {
   hydrate,
   setPendingFriendsInvitations,
+  setUnreadFriendsInvitations,
   setFriends,
   setOnlineUsers,
   acceptFriendInvitation,

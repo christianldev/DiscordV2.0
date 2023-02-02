@@ -8,15 +8,17 @@ import { logout } from "../../redux/reducers/authReducer";
 import { useToast } from "../../hooks/useToast";
 import { useEffect } from "react";
 import server from "../../interceptors/axios.interceptor";
+import { useSelector } from "react-redux";
 
 const Tabs = ({ dropdown, setDropdown }) => {
   const navigate = useNavigate();
   const { add } = useToast();
+  const { account } = store.getState();
   const [notifications, setNotifications] = useState([]);
+
   const {
     friends: { pendingFriendsInvitations },
-    account,
-  } = store.getState();
+  } = useSelector((state) => state);
 
   const signOut = () => {
     store.dispatch(logout());
@@ -29,9 +31,10 @@ const Tabs = ({ dropdown, setDropdown }) => {
         const response = await server.get(`/notifications`, {
           headers: { userId: account.user.userId },
         });
-        console.log(response);
+
         setNotifications(response.data.notifications);
       } catch (error) {
+        console.log(error);
         add({
           title: "Error",
           description: error.response.data.message,
@@ -128,11 +131,7 @@ const Tabs = ({ dropdown, setDropdown }) => {
             </div>
           </div>
         </div>
-        {dropdown && (
-          <FriendNotification
-            pendingFriendsInvitations={pendingFriendsInvitations}
-          />
-        )}
+        {dropdown && <FriendNotification />}
       </div>
     </div>
   );
